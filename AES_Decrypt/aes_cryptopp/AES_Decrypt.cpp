@@ -498,15 +498,16 @@ int main(int argc, char* argv[])
 				int selection;
     
 				cout << "\n************************************************************************"
-					 << "\n* AES BLOCK CIPHER"
+					 << "\n* AES BLOCK CIPHER - DECRYPTION"
 					 <<	"\n* Title  : Cryptography: encrypting files before storage in the cloud."
 					 <<	"\n* Author : Pooja Patil and Mayur Kale \n* Date   : 11/23/2014 \n* Version: 1.0"
 					 << "\n************************************************************************\n\n"; 
 
-                cout << "Please enter 1 to execute Part 3:\n"; 
-				cout << "Please enter 2 to Generate RSA Private key:\n"; 
-				cout << "Please enter 3 to Generate RSA Public  key:\n"; 
-				cout << "Please enter 4 to Decrypt key using privat key and Decrypt cipher text using AESBLOCKCIPHER : \n"; 
+                cout << "1) Execute Part 3\n" 
+					 << "2) Generate RSA Private key\n"
+					 << "3) Generate RSA Public  key\n"
+					 << "4) Decrypt key using privat key and Decrypt cipher text using AESBLOCKCIPHER\n"					
+					 << "5) Exit the program" << endl << endl;
 				cout << "Please select the function you would like to perform : ";
                 cin >> selection; 
 
@@ -528,13 +529,9 @@ int main(int argc, char* argv[])
 					default:  
 						break; 
                 } 
-  
-                      
-  
+
                 Key_file.close(); 
-                Cipher_file.close(); 
-                //IV_file.close(); 
-               // cin.get();  
+                Cipher_file.close(); ;  
                 system("pause"); 
     return 0; 
   
