@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
 	{
 		int selection;
 		cout << "\n************************************************************************"
-			 << "\n* AES BLOCK CIPHER - ENCRYPTION"
+			 << "\n* Welcome to AES BLOCK CIPHER - ENCRYPTION"
 			 <<	"\n* Title  : Cryptography: encrypting files before storage in the cloud."
 			 <<	"\n* Author : Pooja Patil and Mayur Kale \n* Date   : 11/23/2014 \n* Version: 1.0"
 			 << "\n************************************************************************\n\n";
@@ -123,11 +123,10 @@ int main(int argc, char* argv[])
 							}
 					}
 
-
-				cout << "1) AESBLOCKCIPHER Encryption mode\n"
-					 << "2) Encrypt Key using RSA public key And Perform AESBLOCKCIPHER Encryption mode\n"
-					 << "3) Exit the program" << endl << endl;
-				cout << "Please select the function you would like to perform : ";
+				cout << "[1] AES Block Cipher Encryption mode\n"
+					 << "[2] AES Block Cipher Encryption mode with RSA public key\n"
+					 << "[3] Exit the program" << endl;
+				cout << "Please select the function you would like to perform : (1/2/3) \n> ";
 				cin >> selection;
 
 				switch (selection)
@@ -219,7 +218,7 @@ void EncryptKey_UsingRSA(string keyfile)
 			); // StringSource
 
 			
-			cout<< '\n' << "The cipher text has been genrated:";
+			cout<< '\n' << "The cipher text has been generated:";
 			myfile << encoded;
 			myfile.close();
 
@@ -258,18 +257,14 @@ void EncryptKey_UsingRSA(string keyfile)
             ) // PK_EncryptorFilter
          ); // StringSource
 
-		cout << "\nDecrypted text"<< recovered ;
+		cout << "\nDecrypted text: " << recovered ;
 
-		cout << "\nComparing The string";
+		//cout << "\nComparing The string";
         assert( plain == recovered );
-
-
 }
 
 void AesBlockCipher(string plaintxt,string keyfile,string mkey)
 	{
-	
-
         std::string key = keyfile.c_str();
         std::string iv = "0";		
 		cout << '\n';
@@ -277,8 +272,7 @@ void AesBlockCipher(string plaintxt,string keyfile,string mkey)
 		std::string InputText = plaintxt;
 		std::string ciphertext;
 		
-		cout << "From here the encryption starts \n" ;
-		cout << '\n';
+		cout << "Encryption begins... \n------------------------------------------------------\n" ;
 
 		CryptoPP::AES::Encryption aesEncryption((byte *)key.c_str(), CryptoPP::AES::DEFAULT_KEYLENGTH);
 		CryptoPP::CBC_Mode_ExternalCipher::Encryption cbcEncryption(aesEncryption , (byte *)iv.c_str() );
@@ -296,7 +290,7 @@ void AesBlockCipher(string plaintxt,string keyfile,string mkey)
 		) // HexEncoder
 	); // StringSource
 
-	cout<< '\n' << "The cipher text has been genrated:";
+	cout<< '\n' << "The cipher text has been generated.";
 		
 	myfile << encoded.length()<<endl;
 	myfile << encoded;
@@ -328,8 +322,7 @@ void AesBlockCipher(string plaintxt,string keyfile,string mkey)
 	//cout << beforemac;
 	
 	//*   Encryption of Mac begins:-
-	    cout << "From here the encryption of mac starts starts \n" ;
-		cout << '\n';
+	    cout << "Encryption of mac begins... \n------------------------------------------------------\n\n" ;
 		string macciphertext;
 
 		CryptoPP::AES::Encryption aesEncryption1((byte *)mkey.c_str(), CryptoPP::AES::DEFAULT_KEYLENGTH);
@@ -346,7 +339,7 @@ void AesBlockCipher(string plaintxt,string keyfile,string mkey)
 		) // HexEncoder
 	); // StringSource
 	
-	cout << "This is mac encoded" << '\n'  << MacEncoded;
+	cout << "This is mac encoded" << '\n'  << MacEncoded << "\n\n";
 	
 	std :: ofstream mac ( "mac.txt" );  
      // Outputs to example.txt through a_file
