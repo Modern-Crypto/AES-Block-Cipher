@@ -1,0 +1,8 @@
+﻿Build started 4/3/2014 5:50:36 PM.
+     1>Project "C:\Users\Aditya\Downloads\AES_CryptoPP\AES_encrypt\AES_CryptoPP\AES_CryptoPP.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.Cpp.Platform.targets(44,5): error MSB8020: The builds tools for v110_wp80 (Platform Toolset = 'v110_wp80') cannot be found. To build using the v110_wp80 build tools, either click the Project menu or right-click the solution, and then select "Update VC++ Projects...". Install v110_wp80 to build using the v110_wp80 build tools.
+     1>Done Building Project "C:\Users\Aditya\Downloads\AES_CryptoPP\AES_encrypt\AES_CryptoPP\AES_CryptoPP.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.13

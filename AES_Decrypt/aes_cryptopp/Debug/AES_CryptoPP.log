@@ -1,0 +1,19 @@
+﻿Build started 11/24/2014 2:23:05 AM.
+     1>Project "E:\Crypto-Project\AES_Decrypt\AES_Decrypt\AES_Decrypt\AES_CryptoPP\AES_CryptoPP.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"E:\Crypto-Project\Project2\cryptopp" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AES_Decrypt.cpp
+         AES_Decrypt.cpp
+     1>e:\crypto-project\aes_decrypt\aes_decrypt\aes_decrypt\aes_cryptopp\aes_decrypt.cpp(120): warning C4101: 'str' : unreferenced local variable
+     1>e:\crypto-project\aes_decrypt\aes_decrypt\aes_decrypt\aes_cryptopp\aes_decrypt.cpp(453): warning C4101: 'Cipherstr' : unreferenced local variable
+     1>e:\crypto-project\aes_decrypt\aes_decrypt\aes_decrypt\aes_cryptopp\aes_decrypt.cpp(454): warning C4101: 'Keystr' : unreferenced local variable
+     1>e:\crypto-project\aes_decrypt\aes_decrypt\aes_decrypt\aes_cryptopp\aes_decrypt.cpp(456): warning C4101: 'Mackey' : unreferenced local variable
+     1>e:\crypto-project\aes_decrypt\aes_decrypt\aes_decrypt\aes_cryptopp\aes_decrypt.cpp(455): warning C4101: 'Macstr' : unreferenced local variable
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Crypto-Project\AES_Decrypt\AES_Decrypt\AES_Decrypt\Debug\AES_Decrypt.exe" /INCREMENTAL /NOLOGO "E:\Crypto-Project\Project2\cryptopp\Win32\Output\Debug\cryptlib.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Crypto-Project\AES_Decrypt\AES_Decrypt\AES_Decrypt\Debug\AES_Decrypt.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Crypto-Project\AES_Decrypt\AES_Decrypt\AES_Decrypt\Debug\AES_Decrypt.lib" /MACHINE:X86 Debug\AES_Decrypt.obj
+         Debug\stdafx.obj
+         AES_CryptoPP.vcxproj -> E:\Crypto-Project\AES_Decrypt\AES_Decrypt\AES_Decrypt\Debug\AES_Decrypt.exe
+     1>Done Building Project "E:\Crypto-Project\AES_Decrypt\AES_Decrypt\AES_Decrypt\AES_CryptoPP\AES_CryptoPP.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.23
