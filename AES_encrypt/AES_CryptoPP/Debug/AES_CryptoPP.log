@@ -1,4 +1,4 @@
-﻿Build started 11/24/2014 2:18:58 AM.
+﻿Build started 11/24/2014 3:12:41 AM.
      1>Project "E:\Crypto-Project\AES_encrypt\AES_encrypt\AES_CryptoPP\AES_CryptoPP.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"E:\Crypto-Project\Project2\cryptopp" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AES_Encrypt.cpp
@@ -11,4 +11,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:06.98
+Time Elapsed 00:00:05.23

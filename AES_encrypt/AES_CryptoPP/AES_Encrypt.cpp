@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
 	{
 		int selection;
 		cout << "\n************************************************************************"
-			 << "\n* AES BLOCK CIPHER"
+			 << "\n* AES BLOCK CIPHER - ENCRYPTION"
 			 <<	"\n* Title  : Cryptography: encrypting files before storage in the cloud."
 			 <<	"\n* Author : Pooja Patil and Mayur Kale \n* Date   : 11/23/2014 \n* Version: 1.0"
 			 << "\n************************************************************************\n\n";
@@ -124,9 +124,9 @@ int main(int argc, char* argv[])
 					}
 
 
-				cout << "1: AESBLOCKCIPHER Encryption mode:\n"
-					 << "2: Encrypt Key using RSA public key And Perform AESBLOCKCIPHER Encryption mode:\n"
-					 << "3. Exit the program" << endl << endl;
+				cout << "1) AESBLOCKCIPHER Encryption mode\n"
+					 << "2) Encrypt Key using RSA public key And Perform AESBLOCKCIPHER Encryption mode\n"
+					 << "3) Exit the program" << endl << endl;
 				cout << "Please select the function you would like to perform : ";
 				cin >> selection;
 
@@ -161,65 +161,49 @@ void EncryptKey_UsingRSA(string keyfile)
 	string StrPublickey;
 
 		std::ifstream PublicKey ("rsa-public.txt"); 
-		 if (!PublicKey.is_open() )  
+		 if (!PublicKey.is_open())  
            cout<<"Could not open file\n"; 
 
-
-			while ( PublicKey )
-			{
-
+		 while (PublicKey) {
 			getline(PublicKey,StrPublickey);
-			
-			}
+		 }
 
 	RSA::PublicKey  public_key;
 	StringSource file_pk1(StrPublickey,true,new HexDecoder);
-
-	public_key.Load( file_pk1);
+	public_key.Load(file_pk1);
 
 	////2) Load Private key
 
-			string Strsecretekey;
+		 string Strsecretekey;
 
-		std::ifstream SecreatKey ("rsa-private.txt"); 
+		 std::ifstream SecreatKey ("rsa-private.txt"); 
 		 if (!SecreatKey.is_open() )  
            cout<<"Could not open file\n"; 
 
-
-			while ( SecreatKey )
-			{
-
+		  while ( SecreatKey ) {
 			getline(SecreatKey,Strsecretekey);
-			
-			}
+		  }
 
-	
 		RSA::PrivateKey private_key;
-		
-
 		StringSource file_pk(Strsecretekey,true,new HexDecoder);
-
-		private_key.Load( file_pk );
-
-
-
+		private_key.Load(file_pk);
 
 	//Encryption of Key started
+
 	 string plain=keyfile, cipher, recovered;
 
         ////////////////////////////////////////////////
         // Encryption
-        RSAES_OAEP_SHA_Encryptor e( public_key );
+        RSAES_OAEP_SHA_Encryptor e(public_key);
 
-		
 		//Encryption is Done over Here
-        StringSource( plain, true,
-            new PK_EncryptorFilter( rndtest, e,
-                new StringSink( cipher )
+        StringSource(plain, true,
+            new PK_EncryptorFilter(rndtest, e,
+                new StringSink(cipher)
             ) // PK_EncryptorFilter
          ); // StringSource
 
-		cout <<"\nCipher text has neeb generated : \t"<< cipher; 
+		cout <<"\nCipher text has been generated : \t"<< cipher; 
 
 		///Saving Data in txt File.
 
@@ -236,13 +220,7 @@ void EncryptKey_UsingRSA(string keyfile)
 
 			
 			cout<< '\n' << "The cipher text has been genrated:";
-
-			//Below line commented by swapnil
-			//myfile << encoded.length()<<endl;
-
 			myfile << encoded;
-	
-
 			myfile.close();
 
 
@@ -255,15 +233,10 @@ void EncryptKey_UsingRSA(string keyfile)
 		 if (!RSACipherfile.is_open() )  
            cout<<"Could not open file\n"; 
 
-
-			while ( RSACipherfile )
-			{
-
+		while (RSACipherfile) {
 			getline(RSACipherfile,RSACipher);
-			
-			}
-
-			RSACipherfile.close();
+		}
+		RSACipherfile.close();
 
 	// 4)HEX format to ciphertext form
 
@@ -327,22 +300,20 @@ void AesBlockCipher(string plaintxt,string keyfile,string mkey)
 		
 	myfile << encoded.length()<<endl;
 	myfile << encoded;
-	
-
 	myfile.close();
 
+	// current date/time based on current system
+   time_t now = time(0);
+   // convert now to string form
+   char* dt = ctime(&now);
+   cout << "\nThe current date and time is: " << dt << endl;
+
 	time_t timer1;
-  
+	time(&timer1);
 
-   cout << '\n' << "Time" << '\n';
-   cout << time(&timer1) << '\n';
-
-    
 	std::stringstream ss;
     ss << timer1;
     std::string ts = ss.str();
-
-
 
 	std :: ofstream timestamp ( "timestamp.txt" );  
      // Outputs to example.txt through a_file
