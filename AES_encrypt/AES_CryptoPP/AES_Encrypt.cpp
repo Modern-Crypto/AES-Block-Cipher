@@ -87,13 +87,6 @@ void SaveHex(const string& filename, const BufferedTransformation& bt);
 // Main entry of this application.
 int main(int argc, char* argv[]) 
 	{
-		int selection;
-		cout << "\n************************************************************************"
-			 << "\n* Welcome to AES BLOCK CIPHER - ENCRYPTION"
-			 <<	"\n* Title  : Cryptography: encrypting files before storage in the cloud."
-			 <<	"\n* Author : Pooja Patil and Mayur Kale \n* Date   : 11/23/2014 \n* Version: 1.0"
-			 << "\n************************************************************************\n\n";
-
 		if (argc !=4) {
 			cout <<"*** Error: Missing Parameters *** \n"
 				 <<"Usage: filename <key_file_path> <plain_file_path> <MacKey_file_path> \n";
@@ -123,8 +116,6 @@ int main(int argc, char* argv[])
 							}
 					}
 
-				cout << "[1] AES Block Cipher Encryption mode\n"
-					 << "[2] AES Block Cipher Encryption mode with RSA public key\n"
 					 << "[3] Exit the program" << endl;
 				cout << "Please select the function you would like to perform : (1/2/3) \n> ";
 				cin >> selection;
@@ -153,124 +144,7 @@ int main(int argc, char* argv[])
 
 
 
-void EncryptKey_UsingRSA(string keyfile)
-{
-	AutoSeededRandomPool rng,rnd,rndtest,rndtest2;
-	////1) Load public key
-	string StrPublickey;
 
-		std::ifstream PublicKey ("rsa-public.txt"); 
-		 if (!PublicKey.is_open())  
-           cout<<"Could not open file\n"; 
-
-		 while (PublicKey) {
-			getline(PublicKey,StrPublickey);
-		 }
-
-	RSA::PublicKey  public_key;
-	StringSource file_pk1(StrPublickey,true,new HexDecoder);
-	public_key.Load(file_pk1);
-
-	////2) Load Private key
-
-		 string Strsecretekey;
-
-		 std::ifstream SecreatKey ("rsa-private.txt"); 
-		 if (!SecreatKey.is_open() )  
-           cout<<"Could not open file\n"; 
-
-		  while ( SecreatKey ) {
-			getline(SecreatKey,Strsecretekey);
-		  }
-
-		RSA::PrivateKey private_key;
-		StringSource file_pk(Strsecretekey,true,new HexDecoder);
-		private_key.Load(file_pk);
-
-	//Encryption of Key started
-
-	 string plain=keyfile, cipher, recovered;
-
-        ////////////////////////////////////////////////
-        // Encryption
-        RSAES_OAEP_SHA_Encryptor e(public_key);
-
-		//Encryption is Done over Here
-        StringSource(plain, true,
-            new PK_EncryptorFilter(rndtest, e,
-                new StringSink(cipher)
-            ) // PK_EncryptorFilter
-         ); // StringSource
-
-		cout <<"\nCipher text has been generated : \t"<< cipher; 
-
-		///Saving Data in txt File.
-
-			std::fstream myfile;
-			myfile.open ("RSAciphertext.txt");
-	
-			string encoded,decoded,strDecode;
-
-			StringSource(cipher, true,
-				new HexEncoder(
-					new StringSink(encoded)
-				) // HexEncoder
-			); // StringSource
-
-			
-			cout<< '\n' << "The cipher text has been generated:";
-			myfile << encoded;
-			myfile.close();
-
-
-
-
-         //3) Read the RSAcipherText file and convert it into cipher
-		string RSACipher;
-
-		std::ifstream RSACipherfile ("RSAciphertext.txt"); 
-		 if (!RSACipherfile.is_open() )  
-           cout<<"Could not open file\n"; 
-
-		while (RSACipherfile) {
-			getline(RSACipherfile,RSACipher);
-		}
-		RSACipherfile.close();
-
-	// 4)HEX format to ciphertext form
-
-			StringSource(RSACipher, true,
-				new HexDecoder(
-					new StringSink(strDecode)
-				) // HexDncoder
-			); // StringSource
-
-        ////////////////////////////////////////////////
-        // Decryption
-
-		//Decryption of Key
-        RSAES_OAEP_SHA_Decryptor d( private_key );
-
-        StringSource( strDecode, true,
-            new PK_DecryptorFilter( rndtest2, d,
-                new StringSink( recovered )
-            ) // PK_EncryptorFilter
-         ); // StringSource
-
-		cout << "\nDecrypted text: " << recovered ;
-
-		//cout << "\nComparing The string";
-        assert( plain == recovered );
-}
-
-void AesBlockCipher(string plaintxt,string keyfile,string mkey)
-	{
-        std::string key = keyfile.c_str();
-        std::string iv = "0";		
-		cout << '\n';
-		cout << '\n';		
-		std::string InputText = plaintxt;
-		std::string ciphertext;
 		
 		cout << "Encryption begins... \n------------------------------------------------------\n" ;
 
