@@ -87,6 +87,13 @@ void SaveHex(const string& filename, const BufferedTransformation& bt);
 // Main entry of this application.
 int main(int argc, char* argv[]) 
 	{
+		int selection;
+		cout << "\n************************************************************************"
+			 << "\n* Welcome to AES BLOCK CIPHER - ENCRYPTION"
+			 <<	"\n* Title  : Cryptography: encrypting files before storage in the cloud."
+			 <<	"\n* Author : Pooja Patil and Mayur Kale \n* Date   : 11/23/2014 \n* Version: 1.0"
+			 << "\n************************************************************************\n\n";
+
 		if (argc !=4) {
 			cout <<"*** Error: Missing Parameters *** \n"
 				 <<"Usage: filename <key_file_path> <plain_file_path> <MacKey_file_path> \n";
@@ -116,37 +123,31 @@ int main(int argc, char* argv[])
 							}
 					}
 
-					 << "[3] Exit the program" << endl;
-				cout << "Please select the function you would like to perform : (1/2/3) \n> ";
-				cin >> selection;
-
-				switch (selection)
-				{
-					case 1:   
-						AesBlockCipher(plaintext,keyfile,mkeyfile);
-						break;
-					case 2:   
-						EncryptKey_UsingRSA(keyfile);
-						AesBlockCipher(plaintext,keyfile,mkeyfile);
-						break;
-					case 3:
-						cout << "\nThank You !!\n";
-					default: break;
-				}  
 				key_file.close();
 				plain_file.close();
 
 				cin.get(); 
 				system("pause");
-			 }
+		}
 	return 0;				
 	}
 
 
 
+void AesBlockCipher(string plaintxt,string keyfile,string mkey)
+	{
+        std::string key = keyfile.c_str();
+        std::string iv = "0";		
+		cout << '\n';
+		cout << '\n';		
+		std::string InputText = plaintxt;
+		std::string ciphertext;
 
+		string cipher_file = "ciphertext.txt";
+		string timestamp_file = "timestamp.txt";
+		string mac_cipher_file = "mac.txt";
 		
-		cout << "Encryption begins... \n------------------------------------------------------\n" ;
+		cout << "AES Encryption begins... \n------------------------------------------------------\n" ;
 
 		CryptoPP::AES::Encryption aesEncryption((byte *)key.c_str(), CryptoPP::AES::DEFAULT_KEYLENGTH);
 		CryptoPP::CBC_Mode_ExternalCipher::Encryption cbcEncryption(aesEncryption , (byte *)iv.c_str() );
@@ -155,7 +156,7 @@ int main(int argc, char* argv[])
 		stfEncryptor.Put( reinterpret_cast<const unsigned char*>( InputText.c_str() ), InputText.length() + 1 );
 		stfEncryptor.MessageEnd();
 		 std::fstream myfile;
-		myfile.open ("ciphertext.txt");
+		myfile.open (cipher_file);
 	
     string encoded;
 	StringSource(ciphertext, true,
@@ -183,45 +184,13 @@ int main(int argc, char* argv[])
     ss << timer1;
     std::string ts = ss.str();
 
-	std :: ofstream timestamp ( "timestamp.txt" );  
+	std :: ofstream timestamp (timestamp_file);  
      // Outputs to example.txt through a_file
-		 
 		  timestamp<<ts;
-
 		  timestamp.close();
 
-
-	
 	string beforemac=ts + encoded; 
 	//cout << beforemac;
 	
-	//*   Encryption of Mac begins:-
-	    cout << "Encryption of mac begins... \n------------------------------------------------------\n\n" ;
-		string macciphertext;
 
-		CryptoPP::AES::Encryption aesEncryption1((byte *)mkey.c_str(), CryptoPP::AES::DEFAULT_KEYLENGTH);
-		CryptoPP::CBC_Mode_ExternalCipher::Encryption cbcEncryption1(aesEncryption , (byte *)iv.c_str() );
-
-		CryptoPP::StreamTransformationFilter stfEncryptor1(cbcEncryption1, new CryptoPP::StringSink( macciphertext ) );
-		stfEncryptor1.Put( reinterpret_cast<const unsigned char*>( beforemac.c_str() ), beforemac.length() + 1 );
-		stfEncryptor1.MessageEnd();
-
-		string MacEncoded;
-	StringSource(macciphertext, true,
-		new HexEncoder(
-			new StringSink(MacEncoded)
-		) // HexEncoder
-	); // StringSource
-	
-	cout << "This is mac encoded" << '\n'  << MacEncoded << "\n\n";
-	
-	std :: ofstream mac ( "mac.txt" );  
-     // Outputs to example.txt through a_file
-		 
-	mac << MacEncoded.length()<<endl;	  
-	mac << MacEncoded;
-
-
-		  mac.close();
-				
-	}
+}
